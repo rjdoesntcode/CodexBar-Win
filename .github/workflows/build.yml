@@ -3,7 +3,6 @@ name: Build and Release
 on:
   push:
     branches: [ main, 'claude/*' ]
-    tags: [ 'v*' ]
   pull_request:
     branches: [ main ]
   workflow_dispatch:
@@ -28,50 +27,19 @@ jobs:
 
     - name: Publish CodexBar (self-contained)
       run: |
-        dotnet publish src/CodexBar/CodexBar.csproj -c Release -r win-x64 --self-contained true -o ./publish/CodexBar-win-x64 -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
+        dotnet publish src/CodexBar/CodexBar.csproj -c Release -r win-x64 --self-contained true -o ./publish -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
 
-    - name: Publish CodexBar CLI (self-contained)
-      run: |
-        dotnet publish src/CodexBar.CLI/CodexBar.CLI.csproj -c Release -r win-x64 --self-contained true -o ./publish/CodexBar-CLI-win-x64 -p:PublishSingleFile=true
-
-    - name: Upload CodexBar artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: CodexBar-win-x64
-        path: ./publish/CodexBar-win-x64/CodexBar.exe
-        retention-days: 30
-
-    - name: Upload CLI artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: CodexBar-CLI-win-x64
-        path: ./publish/CodexBar-CLI-win-x64/CodexBar.CLI.exe
-        retention-days: 30
-
-    - name: Create ZIP for Release
-      if: startsWith(github.ref, 'refs/tags/v')
-      run: |
-        Compress-Archive -Path ./publish/CodexBar-win-x64/* -DestinationPath ./publish/CodexBar-win-x64.zip
-        Compress-Archive -Path ./publish/CodexBar-CLI-win-x64/* -DestinationPath ./publish/CodexBar-CLI-win-x64.zip
-      shell: pwsh
-
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/v')
-
-    steps:
-    - name: Download artifacts
-      uses: actions/download-artifact@v4
-      with:
-        path: ./artifacts
-
-    - name: Create Release
+    - name: Upload to Release
       uses: softprops/action-gh-release@v1
       with:
-        files: |
-          ./artifacts/CodexBar-win-x64/CodexBar-win-x64.zip
-          ./artifacts/CodexBar-CLI-win-x64/CodexBar-CLI-win-x64.zip
-        generate_release_notes: true
+        tag_name: latest
+        name: Latest Build
+        body: |
+          Automated build from commit ${{ github.sha }}
+
+          Download `CodexBar.exe` and run it - the app will appear in your system tray.
+        files: ./publish/CodexBar.exe
+        prerelease: true
+        make_latest: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
