@@ -1,0 +1,13 @@
+Icon Placeholder
+
+The icon.ico file should be created and placed in this directory.
+
+You can create an icon using:
+1. An icon editor like IcoFX or Greenfish Icon Editor
+2. Online converters that convert PNG to ICO
+3. Visual Studio's built-in icon editor
+
+Recommended icon specs:
+- Sizes: 16x16, 32x32, 48x48, 256x256
+- Format: ICO with multiple resolutions
+- Design: A circular indicator matching the app's status colors
