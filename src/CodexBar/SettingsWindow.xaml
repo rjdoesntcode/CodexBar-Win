@@ -1,0 +1,119 @@
+<Window x:Class="CodexBar.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CodexBar Settings" Height="500" Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="{StaticResource BackgroundBrush}">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="CodexBar Settings"
+                       FontSize="24" FontWeight="Bold"
+                       Foreground="{StaticResource TextPrimaryBrush}"/>
+            <TextBlock Text="Configure your AI usage monitoring preferences"
+                       FontSize="12"
+                       Foreground="{StaticResource TextSecondaryBrush}"
+                       Margin="0,5,0,0"/>
+        </StackPanel>
+
+        <!-- Settings Content -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- Refresh Settings -->
+                <GroupBox Header="Refresh Settings"
+                          Foreground="{StaticResource TextPrimaryBrush}"
+                          BorderBrush="{StaticResource SurfaceBrush}"
+                          Margin="0,0,0,15">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Refresh Interval (minutes):"
+                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                   Margin="0,0,0,5"/>
+                        <ComboBox x:Name="RefreshIntervalCombo" Width="100" HorizontalAlignment="Left">
+                            <ComboBoxItem Content="1"/>
+                            <ComboBoxItem Content="2"/>
+                            <ComboBoxItem Content="5"/>
+                            <ComboBoxItem Content="10"/>
+                            <ComboBoxItem Content="15"/>
+                            <ComboBoxItem Content="30"/>
+                        </ComboBox>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Notification Settings -->
+                <GroupBox Header="Notifications"
+                          Foreground="{StaticResource TextPrimaryBrush}"
+                          BorderBrush="{StaticResource SurfaceBrush}"
+                          Margin="0,0,0,15">
+                    <StackPanel Margin="10">
+                        <CheckBox x:Name="WarningNotificationsCheck"
+                                  Content="Show warning notifications (80%+ usage)"
+                                  Foreground="{StaticResource TextSecondaryBrush}"
+                                  Margin="0,0,0,10"/>
+                        <CheckBox x:Name="ExceededNotificationsCheck"
+                                  Content="Show notifications when limit exceeded"
+                                  Foreground="{StaticResource TextSecondaryBrush}"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Browser Settings -->
+                <GroupBox Header="Browser"
+                          Foreground="{StaticResource TextPrimaryBrush}"
+                          BorderBrush="{StaticResource SurfaceBrush}"
+                          Margin="0,0,0,15">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Preferred browser for cookie import:"
+                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                   Margin="0,0,0,5"/>
+                        <ComboBox x:Name="BrowserCombo" Width="150" HorizontalAlignment="Left">
+                            <ComboBoxItem Content="Chrome"/>
+                            <ComboBoxItem Content="Edge"/>
+                            <ComboBoxItem Content="Firefox"/>
+                            <ComboBoxItem Content="Brave"/>
+                            <ComboBoxItem Content="Opera"/>
+                        </ComboBox>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Provider Settings -->
+                <GroupBox Header="Providers"
+                          Foreground="{StaticResource TextPrimaryBrush}"
+                          BorderBrush="{StaticResource SurfaceBrush}"
+                          Margin="0,0,0,15">
+                    <StackPanel x:Name="ProvidersPanel" Margin="10">
+                        <!-- Populated dynamically -->
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Startup Settings -->
+                <GroupBox Header="Startup"
+                          Foreground="{StaticResource TextPrimaryBrush}"
+                          BorderBrush="{StaticResource SurfaceBrush}">
+                    <StackPanel Margin="10">
+                        <CheckBox x:Name="StartWithWindowsCheck"
+                                  Content="Start CodexBar with Windows"
+                                  Foreground="{StaticResource TextSecondaryBrush}"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Footer Buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal"
+                    HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button x:Name="CancelButton" Content="Cancel"
+                    Width="80" Height="30" Margin="0,0,10,0"
+                    Click="CancelButton_Click"/>
+            <Button x:Name="SaveButton" Content="Save"
+                    Width="80" Height="30"
+                    Click="SaveButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,35 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Status Colors -->
+    <Color x:Key="HealthyColor">#10B981</Color>
+    <Color x:Key="WarningColor">#F59E0B</Color>
+    <Color x:Key="CriticalColor">#EF4444</Color>
+    <Color x:Key="ErrorColor">#6B7280</Color>
+    <Color x:Key="UnknownColor">#9CA3AF</Color>
+
+    <!-- Brushes -->
+    <SolidColorBrush x:Key="HealthyBrush" Color="{StaticResource HealthyColor}"/>
+    <SolidColorBrush x:Key="WarningBrush" Color="{StaticResource WarningColor}"/>
+    <SolidColorBrush x:Key="CriticalBrush" Color="{StaticResource CriticalColor}"/>
+    <SolidColorBrush x:Key="ErrorBrush" Color="{StaticResource ErrorColor}"/>
+    <SolidColorBrush x:Key="UnknownBrush" Color="{StaticResource UnknownColor}"/>
+
+    <!-- Provider Colors -->
+    <SolidColorBrush x:Key="ClaudeBrush" Color="#D97757"/>
+    <SolidColorBrush x:Key="CodexBrush" Color="#10A37F"/>
+    <SolidColorBrush x:Key="CursorBrush" Color="#7C3AED"/>
+    <SolidColorBrush x:Key="CopilotBrush" Color="#000000"/>
+
+    <!-- UI Colors -->
+    <Color x:Key="BackgroundColor">#1F2937</Color>
+    <Color x:Key="SurfaceColor">#374151</Color>
+    <Color x:Key="TextPrimaryColor">#F9FAFB</Color>
+    <Color x:Key="TextSecondaryColor">#9CA3AF</Color>
+
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}"/>
+    <SolidColorBrush x:Key="SurfaceBrush" Color="{StaticResource SurfaceColor}"/>
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimaryColor}"/>
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource TextSecondaryColor}"/>
+
+</ResourceDictionary>
